@@ -2,7 +2,9 @@ let input = document.querySelector(".input");
 let btns = document.querySelectorAll("button");
 let degToRad = document.getElementById("degToRad");
 let ndbtn = document.getElementById("2nd");
-
+let trigonometry = document.getElementById("trigonometry");
+let trigonometry_two = document.getElementById("trigonometry-two");
+let trigonometry_one = document.getElementById("trigonometry-one");
 
 // console.log(btns.forEach(btn => console.log(btn.innerText)));
 // console.log(trigonometry_two);
@@ -66,6 +68,85 @@ function execute(value) {
   }
 }
 
+// calculate Factorial
+function findFactorial(num) {
+  if (num < 0) return -1;
+  else if (num == 0) return 1;
+  else {
+    return num * findFactorial(num - 1);
+  }
+}
+
+// toggleDegToRad
+function toggleDegToRad(inputVal, btnVal) {
+  // console.log(typeof inputVal);
+  if (inputVal === "") {
+    alert("Please Enter Input Value!");
+  }
+  if (btnVal === "DEG") {
+    let pi = Math.PI;
+    input.value = inputVal * (180 / pi);
+    degToRad.innerText = "RAD";
+  } else {
+    let pi = Math.PI;
+    input.value = inputVal * (pi / 180);
+
+    degToRad.innerText = "DEG";
+  }
+}
+
+// Toggle Button
+function toggleBtn(value) {
+  console.log(value);
+  if (value == "2nd") {
+    ndbtn.innerText = "1st";
+    trigonometry_two.style.display = "none";
+  } else {
+    ndbtn.innerText = "2nd";
+    trigonometry_one.style.display = "none";
+  }
+}
+
+// Add Operator
+function addOperator(value) {
+  input.value = -value;
+}
+
+// Trigonometry
+function findTrigonometry(type, value) {
+  // console.log(value);
+  let numberArr = value.split(" ");
+  let number = numberArr[1];
+  // console.log(type);
+  let res;
+  switch (type) {
+    case "Sin":
+      res = Math.sin((`${number}` * Math.PI) / 180.0);
+      input.value = res;
+      break;
+    case "Cos":
+      res = Math.cos((`${number}` * Math.PI) / 180.0);
+      input.value = res;
+      break;
+    case "Tan":
+      res = Math.tan((`${number}` * Math.PI) / 180.0);
+      input.value = res;
+      break;
+    case "asin":
+      // console.log(typeof number);
+      res = (Math.asin(`${number}`) * 180) / Math.PI;
+      input.value = res;
+      break;
+    case "acos":
+      res = (Math.acos(`${number}`) * 180) / Math.PI;
+      input.value = res;
+    case "atan":
+      res = (Math.atan(`${number}`) * 180) / Math.PI;
+      input.value = res;
+    default:
+      break;
+  }
+}
 
 document.addEventListener("keydown", (event) => {
   var value = event.key;
