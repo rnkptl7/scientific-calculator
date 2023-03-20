@@ -5,9 +5,16 @@ let ndbtn = document.getElementById("2nd");
 let trigonometry = document.getElementById("trigonometry");
 let trigonometry_two = document.getElementById("trigonometry-two");
 let trigonometry_one = document.getElementById("trigonometry-one");
+let darkBtn = document.getElementById("darkIcon");
 
-// console.log(btns.forEach(btn => console.log(btn.innerText)));
-// console.log(trigonometry_two);
+darkBtn.onclick = function () {
+  document.body.classList.toggle("dark-theme");
+  if (document.body.classList.contains("dark-theme")) {
+    darkBtn.src = "assets/sun.png";
+  } else {
+    darkBtn.src = "assets/moon.png";
+  }
+};
 
 function execute(value) {
   let isExp = value.search(" EXP ");
