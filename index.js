@@ -18,30 +18,19 @@ darkBtn.onclick = function () {
 
 function execute(value) {
   let isExp = value.search(" EXP ");
-  console.log(value);
 
-  // console.log(value.includes("10^"));
   if (isExp === 1) {
     let splitExp = value.split(" EXP ");
-    // console.log(splitExp);
     splitExp.splice(1, 0, "10");
-    // console.log(splitExp);
-    // console.log(Number(splitExp[1]) ** Number(splitExp[2]));
 
     input.value = Number(splitExp[0] * splitExp[1] ** splitExp[2]);
 
-    // let calExp = splitExp.join("");
-
-    // console.log(eval(calExp));
   } else if (value.includes(" MOD ")) {
     let splitMod = value.split(" MOD ");
     console.log(splitMod);
-    // console.log(splitMod);
-    // console.log(splitMod[0] % splitMod[1]);
     input.value = Number(splitMod[0] % splitMod[1]);
   } else if (value.includes("10^")) {
     let splitTen = value.split("^");
-    // console.log(splitTen);
     let mul = 10;
     for (let i = 1; i < Number(splitTen[1]); i++) {
       mul = mul * 10;
@@ -57,7 +46,6 @@ function execute(value) {
   } else if (value.includes("ln")) {
     let logVal = value.replace("ln", "");
     input.value = Math.log(logVal);
-    // console.log(value);
   } else if (value.includes("Sin")) {
     findTrigonometry("Sin", value);
   } else if (value.includes("Cos")) {
@@ -86,7 +74,6 @@ function findFactorial(num) {
 
 // toggleDegToRad
 function toggleDegToRad(inputVal, btnVal) {
-  // console.log(typeof inputVal);
   if (inputVal === "") {
     alert("Please Enter Input Value!");
   }
@@ -121,10 +108,8 @@ function addOperator(value) {
 
 // Trigonometry
 function findTrigonometry(type, value) {
-  // console.log(value);
   let numberArr = value.split(" ");
   let number = numberArr[1];
-  // console.log(type);
   let res;
   switch (type) {
     case "Sin":
@@ -140,7 +125,6 @@ function findTrigonometry(type, value) {
       input.value = res;
       break;
     case "asin":
-      // console.log(typeof number);
       res = (Math.asin(`${number}`) * 180) / Math.PI;
       input.value = res;
       break;
@@ -157,39 +141,24 @@ function findTrigonometry(type, value) {
 
 document.addEventListener("keydown", (event) => {
   var value = event.key;
-  // console.log(value);
 
   let operators = ["+", "-", "*", "/", ".", "x"];
   if (Number(value) || operators.includes(value) || value === "0") {
-    // console.log(typeof value);
     input.value += value;
   }
 
   if (value === "Enter" || value === "=") {
-    // console.log("this");
     execute(input.value);
   }
 
   if (value === "Backspace") {
     input.value = input.value.substr(0, input.value.length - 1);
   }
-
-  // input.value += ""
-
-  // console.log(typeof value);
 });
 
 btns.forEach((btn) => {
   btn.addEventListener("click", (e) => {
     let btnVal = e.target.innerText;
-    // console.log(btn);
-
-    // console.log(typeof e.target.innerText, btnVal);
-    // if (Number(btnVal) || operators.includes(btnVal)) {
-    //     input.value += btnVal;
-    // }
-
-    // console.log(btnVal);
     switch (btnVal) {
       case "÷":
         input.value += "/";
@@ -232,7 +201,6 @@ btns.forEach((btn) => {
         input.value = findFactorial(input.value);
         break;
       case "xy":
-        // console.log("^");
         input.value += "^";
         break;
       case "10x":
